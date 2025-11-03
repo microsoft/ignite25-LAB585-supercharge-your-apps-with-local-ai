@@ -1,9 +1,8 @@
-
-
-These instructions are for participants of the **instructor-led** Workshop "SESSIONNAME" at Microsoft AI Tour 2026.  Register to attend in a city near you at [Microsoft AI Tour](https://aitour.microsoft.com/).
-
 ## Lab Overview
 
+Coming soon...
+
+<!--
 In this hands-on workshop, you’ll learn to ....
 
 If you're not a workshop participant at AI Tour, try this code yourself at ....
@@ -29,3 +28,4 @@ Build your first agent with Azure AI Agent Service is an open source project sup
 ## Source code
 
 The source code for this session can be found in the [src folder](../src) of this repo.
+-->
