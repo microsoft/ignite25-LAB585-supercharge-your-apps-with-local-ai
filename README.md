@@ -54,6 +54,8 @@ Phi Silica is a local language model that you can integrate into your Windows ap
 | **Microsoft AI Documentation** | [https://docs.microsoft.com/en-us/windows/ai/](https://docs.microsoft.com/en-us/windows/ai/) | Learn more on Windows AI |
 | **WPF Tutorials** | [https://docs.microsoft.com/en-us/dotnet/desktop/wpf/](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/) | WPF Documentation |
 | **Windows AI APIs** | [https://docs.microsoft.com/en-us/windows/ai/apis/](https://docs.microsoft.com/en-us/windows/ai/apis/) | Learn more on Windows AI APIs |
+| **Discord** | [https://aka.ms/AIFoundryDiscord-Ignite25](https://aka.ms/AIFoundryDiscord-Ignite25) | Join our community |
+| **GitHub Forum** | [https://aka.ms/AIFoundryForum-Ignite25](https://aka.ms/AIFoundryForum-Ignite25) | Ask questions and get support |
 | Ignite 2025 Next Steps | [https://aka.ms/Ignite25-Next-Steps](https://aka.ms/Ignite25-Next-Steps?ocid=ignite25_nextsteps_cnl) | Links to all repos for AI Tour 26 Sessions |
 | Learn at Ignite | [https://aka.ms/LearnAtIgnite](https://aka.ms/LearnAtIgnite?ocid=ignite25_nextsteps_github_cnl) | Continue learning on Microsoft Learn |
 
