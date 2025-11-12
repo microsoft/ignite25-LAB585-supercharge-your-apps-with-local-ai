@@ -66,10 +66,10 @@ Phi Silica is a local language model that you can integrate into your Windows ap
         <sub><b>Bruno Sonnino </b></sub></a><br />
             <a href="https://github.com/brunosonnino" title="talk">📢</a> 
     </td>
-    <td align="center"><a href="http://github.com/mikekinsman">
-        <img src="https://github.com/mikekinsman.png" width="100px;" alt="Greg Woo"/><br />
+    <td align="center"><a href="http://github.com/gregwoo_microsoft">
+        <img src="https://avatars.githubusercontent.com/u/120929158?s=400&u=dceb49466f897c4e454fb9bbdc68f84774d83283&v=4" width="100px;" alt="Greg Woo"/><br />
         <sub><b>Greg Woo</b></sub></a><br />
-            <a href="https://github.com/mikekinsman" title="talk">📢</a> 
+            <a href="https://github.com/gregwoo_microsoft" title="talk">📢</a> 
     </td>
 </tr></table>
 
