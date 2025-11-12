@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ContosoLab (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ContosoLab (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
