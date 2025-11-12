@@ -199,6 +199,11 @@ private async Task IndexPdf(Windows.Data.Pdf.PdfDocument document)
             {
                 ShowStatusMessage($"Processing Page {i}...");
                 var imageBuffer = await GetImageFromPdf(i);
+                if (imageBuffer == null)
+                {
+                    continue;
+                }
+                
                 var page = imageBuffer.CopyToSoftwareBitmap();
                 string contentId = $"Page{i}";
                 var imageContent = AppManagedIndexableAppContent.CreateFromBitmap(contentId, page);

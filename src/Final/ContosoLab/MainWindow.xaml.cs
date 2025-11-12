@@ -215,24 +215,22 @@ namespace ContosoLab
             {
                 try
                 {
-                    var sw = Stopwatch.StartNew();
                     for (var i = 1u; i <= document.PageCount; i++)
                     {
                         ShowStatusMessage($"Processing Page {i}...");
                         var imageBuffer = await GetImageFromPdf(i);
+                        if (imageBuffer == null)
+                        {
+                            continue;
+                        }
+
                         var page = imageBuffer.CopyToSoftwareBitmap();
-                        //var text = await GetTextFromPage(i);    
                         string contentId = $"Page{i}";
-                        var sw1 = Stopwatch.StartNew();
                         var imageContent = AppManagedIndexableAppContent.CreateFromBitmap(contentId, page);
                         indexer.AddOrUpdate(imageContent);
-                        sw1.Stop();
-                        Debug.WriteLine($"Indexed Page {i} in {sw1.ElapsedMilliseconds}ms");
                     }
                     indexer.AddOrUpdate(AppManagedIndexableAppContent.CreateFromString(marker, marker));
-                    sw.Stop();
-                    Debug.WriteLine($"Indexing complete. Time Elapsed: {sw.ElapsedMilliseconds}ms");
-                    ShowStatusMessage($"Indexing complete. Time Elapsed: {sw.ElapsedMilliseconds}ms");
+                    ShowStatusMessage($"Indexing complete.");
                 }
                 catch (Exception ex)
                 {
