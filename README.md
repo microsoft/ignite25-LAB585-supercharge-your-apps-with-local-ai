@@ -19,7 +19,7 @@ In this lab, you will learn how to add the new AI features into a WPF app and cr
 
 By the end of this lab, you'll have created a sophisticated application featuring:
 
-- 🖥️ **AI-Enhanced WPF Application** - Turbocharge a WPF application with AI features and modern UI
+- 🖥️ **AI-Enhanced Windows Application** - Turbocharge a Windows application with AI features and modern UI
 - 🔍 **AI-Powered Search** - Semantic search using Microsoft's experimental AI indexing
 - 🤖 **RAG-Powered Queries** - Local Retrieval Augmented Generation queries using Semantic Search and Phi-Silica
 - 💬 **Natural Language Queries** - Ask questions about documents in plain English
@@ -29,11 +29,11 @@ By the end of this lab, you'll have created a sophisticated application featurin
 
 ### 💻 Technologies Used
 
-1. WPF
-2. Fluent UI
-3. Semantic Search
-4. OCR AI API
-5. Phi-Silica language  model
+1. [WinAppSDK](https://github.com/microsoft/WindowsAppSDK)
+2. [Fluent UI - WinUI3](https://github.com/microsoft/WindowsAppSDK)
+3. [Semantic Search](https://learn.microsoft.com/en-us/windows/ai/apis/app-content-search)
+4. [OCR AI API](https://learn.microsoft.com/en-us/windows/ai/apis/text-recognition)
+5. [Phi-Silica language  model](https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica)
 
 ### 🌟 Semantic Search
 
@@ -52,7 +52,7 @@ Phi Silica is a local language model that you can integrate into your Windows ap
 | Resources          | Links                             | Description        |
 |:-------------------|:----------------------------------|:-------------------|
 | **Microsoft AI Documentation** | [https://docs.microsoft.com/en-us/windows/ai/](https://docs.microsoft.com/en-us/windows/ai/) | Learn more on Windows AI |
-| **WPF Tutorials** | [https://docs.microsoft.com/en-us/dotnet/desktop/wpf/](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/) | WPF Documentation |
+| **WinUI3 Tutorials** | [https://docs.microsoft.com/en-us/dotnet/desktop/wpf/](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/) | WinUI3 Documentation |
 | **Windows AI APIs** | [https://docs.microsoft.com/en-us/windows/ai/apis/](https://docs.microsoft.com/en-us/windows/ai/apis/) | Learn more on Windows AI APIs |
 | Ignite 2025 Next Steps | [https://aka.ms/Ignite25-Next-Steps](https://aka.ms/Ignite25-Next-Steps?ocid=ignite25_nextsteps_cnl) | Links to all repos for Ignite 2025 Sessions |
 | Learn at Ignite | [https://aka.ms/LearnAtIgnite](https://aka.ms/LearnAtIgnite?ocid=ignite25_nextsteps_github_cnl) | Continue learning on Microsoft Learn |
