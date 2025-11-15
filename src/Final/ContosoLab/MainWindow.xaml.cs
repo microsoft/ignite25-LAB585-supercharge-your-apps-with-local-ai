@@ -412,14 +412,14 @@ namespace ContosoLab
                 sb.AppendLine(await GetTextFromPage(pageNum));
             }
 
-            string systemPrompt = $@"""
-You are a knowledgeable assistant specialized in answering questions based solely on information from the context below, between ###. 
-When responding, focus on delivering clear, accurate answers drawn only from the context, avoiding outside information or assumptions.
+            string systemPrompt = $"""
+            You are a knowledgeable assistant specialized in answering questions based solely on information from the context below, between ###. 
+            When responding, focus on delivering clear, accurate answers drawn only from the context, avoiding outside information or assumptions.
 
-###
-{sb.ToString()}
-###
-""";
+            ###
+            {sb}
+            ###
+            """;
             await GenerateResponse(systemPrompt);
         }
 
