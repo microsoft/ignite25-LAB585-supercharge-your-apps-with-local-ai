@@ -402,88 +402,88 @@ private async Task<bool> InitializeLanguageModel()
 With the Language Model initialized, we can generate answers using a system prompt. Replace the code in the `Ask Button and Generate Response` region with this code:
 
 ```csharp
-        private CancellationTokenSource? cts;
-        private async void AskButton_Click(object sender, RoutedEventArgs e)
+private CancellationTokenSource? cts;
+private async void AskButton_Click(object sender, RoutedEventArgs e)
+{
+    if (indexer == null || languageModel == null || string.IsNullOrEmpty(SearchTextBox?.Text))
+    {
+        return;
+    }
+    string searchTerm = SearchTextBox.Text;
+    var query = indexer.CreateImageQuery(searchTerm);
+    IReadOnlyList<ImageQueryMatch> imageMatches = query.GetNextMatches(5);
+    if (imageMatches == null || imageMatches.Count == 0)
+    {
+        ShowStatusMessage("No matches found.");
+        return;
+    }
+    var pages = imageMatches.Select(m => m.ContentId.Replace("Page", string.Empty)).Distinct().ToList();
+    var sb = new System.Text.StringBuilder();
+    foreach (var p in pages)
+    {
+        if (!uint.TryParse(p, out uint pageNum) || pageNum == 0)
         {
-            if (indexer == null || languageModel == null || string.IsNullOrEmpty(SearchTextBox?.Text))
-            {
-                return;
-            }
-            string searchTerm = SearchTextBox.Text;
-            var query = indexer.CreateImageQuery(searchTerm);
-            IReadOnlyList<ImageQueryMatch> imageMatches = query.GetNextMatches(5);
-            if (imageMatches == null || imageMatches.Count == 0)
-            {
-                ShowStatusMessage("No matches found.");
-                return;
-            }
-            var pages = imageMatches.Select(m => m.ContentId.Replace("Page", string.Empty)).Distinct().ToList();
-            var sb = new System.Text.StringBuilder();
-            foreach (var p in pages)
-            {
-                if (!uint.TryParse(p, out uint pageNum) || pageNum == 0)
-                {
-                    continue;
-                }
-                sb.AppendLine(await GetTextFromPage(pageNum));
-            }
-
-            string systemPrompt = $@"""
-You are a knowledgeable assistant specialized in answering questions based solely on information from the context below, between ###. 
-When responding, focus on delivering clear, accurate answers drawn only from the context, avoiding outside information or assumptions.
-
-###
-{sb.ToString()}
-###
-""";
-            await GenerateResponse(systemPrompt);
+            continue;
         }
+        sb.AppendLine(await GetTextFromPage(pageNum));
+    }
 
-        private async Task GenerateResponse(string systemPrompt)
+    string systemPrompt = $"""
+    You are a knowledgeable assistant specialized in answering questions based solely on information from the context below, between ###. 
+    When responding, focus on delivering clear, accurate answers drawn only from the context, avoiding outside information or assumptions.
+
+    ###
+    {sb}
+    ###
+    """;
+    await GenerateResponse(systemPrompt);
+}
+
+private async Task GenerateResponse(string systemPrompt)
+{
+    if (languageModel == null)
+    {
+        return;
+    }
+    ResultsText.Text = string.Empty;
+    StatusText.Text = "Generating response...";
+    cts = new CancellationTokenSource();
+    StopButton.Visibility = Visibility.Visible;
+    SearchButton.Visibility = Visibility.Collapsed;
+    AskButton.Visibility = Visibility.Collapsed;
+    try
+    {
+        var context = languageModel.CreateContext(systemPrompt);
+        var oper = languageModel.GenerateResponseAsync(context, SearchTextBox.Text, new LanguageModelOptions());
+        oper.Progress = (p, delta) =>
         {
-            if (languageModel == null)
+            DispatcherQueue.TryEnqueue(() => ResultsText.Text += delta);
+            if (cts?.IsCancellationRequested ?? false)
             {
-                return;
+                oper.Cancel();
+                ShowStatusMessage("Cancelled.");
             }
-            ResultsText.Text = string.Empty;
-            StatusText.Text = "Generating response...";
-            cts = new CancellationTokenSource();
-            StopButton.Visibility = Visibility.Visible;
-            SearchButton.Visibility = Visibility.Collapsed;
-            AskButton.Visibility = Visibility.Collapsed;
-            try
-            {
-                var context = languageModel.CreateContext(systemPrompt);
-                var oper = languageModel.GenerateResponseAsync(context, SearchTextBox.Text, new LanguageModelOptions());
-                oper.Progress = (p, delta) =>
-                {
-                    DispatcherQueue.TryEnqueue(() => ResultsText.Text += delta);
-                    if (cts?.IsCancellationRequested ?? false)
-                    {
-                        oper.Cancel();
-                        ShowStatusMessage("Cancelled.");
-                    }
-                };
-                var result = await oper;
-                StatusText.Text = "Done.";
-            }
-            catch (OperationCanceledException)
-            {
-            }
-            catch (Exception ex)
-            {
-                ShowStatusMessage($"Error: {ex.Message}");
-            }
-            StopButton.Visibility = Visibility.Collapsed;
-            SearchButton.Visibility = Visibility.Visible;
-            AskButton.Visibility = Visibility.Visible;
-            return;
-        }
+        };
+        var result = await oper;
+        StatusText.Text = "Done.";
+    }
+    catch (OperationCanceledException)
+    {
+    }
+    catch (Exception ex)
+    {
+        ShowStatusMessage($"Error: {ex.Message}");
+    }
+    StopButton.Visibility = Visibility.Collapsed;
+    SearchButton.Visibility = Visibility.Visible;
+    AskButton.Visibility = Visibility.Visible;
+    return;
+}
 
-        private void StopButton_Click(object sender, RoutedEventArgs e)
-        {
-            cts?.Cancel();
-        }
+private void StopButton_Click(object sender, RoutedEventArgs e)
+{
+    cts?.Cancel();
+}
 ```
 
 When the user clicks the `Ask AI` button, the code gets the 5 most relevant page matches and uses the pages' text, retrieved using the OCR model. Then, it creates a system prompt using the pages' text as context. Finally, it calls `GenerateResponse()` to generate the response.
