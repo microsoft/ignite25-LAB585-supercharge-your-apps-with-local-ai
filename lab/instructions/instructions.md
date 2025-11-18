@@ -1,3 +1,0 @@
-# Lab Instructions
-
-Coming soon....
