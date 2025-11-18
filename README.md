@@ -4,7 +4,7 @@
 
 # [Microsoft Ignite 2025](https://ignite.microsoft.com)
 
-## 🔥LAB585: Supercharge Your WPF Apps with Local AI
+## 🔥LAB585: Supercharge your apps with local AI
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![.NET](https://img.shields.io/badge/.NET-9.0-purple.svg)
