@@ -15,6 +15,11 @@
 
 In this lab, you will learn how to add the new AI features into a WPF app and create an app that uses Semantic Search, OCR and Phi-Silica to query a PDF file and obtain answers based on it
 
+### Feeback? Questions?
+
+If you have a question, or want to provide feedback, feel free to contact us here:
+WinAIFinfo@microsoft.com 
+
 ### 🧠 Learning Outcomes
 
 By the end of this lab, you'll have created a sophisticated application featuring:
